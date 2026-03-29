@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Inherit versions and plugin config from the root -->
+    <parent>
+        <groupId>com.jobengine</groupId>
+        <artifactId>distributed-job-engine</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>common</artifactId>
+    <name>common</name>
+    <!-- No <packaging> here — defaults to "jar", which is what we want -->
+
+    <dependencies>
+        <!-- Lombok: generates boilerplate (getters, setters, builders) at compile time -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <optional>true</optional> <!-- not transitive: modules using common won't inherit Lombok -->
+        </dependency>
+
+        <!-- Jackson: needed to serialize/deserialize DTOs to/from JSON (Kafka messages, HTTP bodies) -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <!-- No version — inherited from Spring Boot BOM in the root pom -->
+        </dependency>
+    </dependencies>
+
+</project>
