@@ -57,6 +57,14 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <!-- Required when not using spring-boot-starter-parent — binds repackage to the package phase -->
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                     <configuration>
                         <!-- Lombok is a compile-time tool only — no need to bundle it in the JAR -->
                         <excludes>
