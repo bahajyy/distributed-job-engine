@@ -45,3 +45,6 @@ target/
 # Local notes and command references
 *.txt
 notes/
+
+# Kubernetes secrets — never commit to git (base64 is not encryption)
+k8s/**/secret.yaml
