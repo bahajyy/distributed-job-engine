@@ -41,3 +41,7 @@ target/
 # Docs (README.md is the only tracked markdown file)
 *.md
 !README.md
+
+# Local notes and command references
+*.txt
+notes/
