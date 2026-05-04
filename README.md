@@ -24,13 +24,8 @@ The Producer API receives HTTP requests, persists jobs to PostgreSQL, and publis
 The Worker Service consumes those events, processes them, and updates job status in the database.
 Failed jobs are routed to a Dead Letter Topic.
 
-## Modules
+![alt text](image.png)
 
-| Module | Description | Port |
-|--------|-------------|------|
-| common | Shared DTOs: JobRequest, JobEvent, JobStatus | - |
-| producer-api | REST API — accepts jobs, publishes to Kafka | 8081 |
-| worker-service | Kafka consumer — processes jobs, writes to DB | 8082 |
 
 ## Tech Stack
 
@@ -45,21 +40,6 @@ Failed jobs are routed to a Dead Letter Topic.
 | Infrastructure | Terraform (AWS EKS) |
 | Observability | Prometheus, Grafana, OpenTelemetry, Jaeger |
 
-## Job Lifecycle
 
-```
-QUEUED → PROCESSING → DONE
-                   → FAILED → Dead Letter Topic
-```
 
-## Running Locally
 
-```bash
-docker compose up -d
-
-curl -X POST http://localhost:8081/jobs \
-  -H "Content-Type: application/json" \
-  -d '{"type": "EMAIL", "payload": {"to": "test@test.com"}}'
-```
-
-Kafka UI: http://localhost:8090
